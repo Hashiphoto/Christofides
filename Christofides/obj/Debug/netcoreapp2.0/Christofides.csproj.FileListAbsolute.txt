@@ -1,0 +1,11 @@
+C:\Users\Trent\OneDrive - Seattle Pacific University\Code\Christofides\Christofides\bin\Debug\netcoreapp2.0\Christofides.deps.json
+C:\Users\Trent\OneDrive - Seattle Pacific University\Code\Christofides\Christofides\bin\Debug\netcoreapp2.0\Christofides.runtimeconfig.json
+C:\Users\Trent\OneDrive - Seattle Pacific University\Code\Christofides\Christofides\bin\Debug\netcoreapp2.0\Christofides.runtimeconfig.dev.json
+C:\Users\Trent\OneDrive - Seattle Pacific University\Code\Christofides\Christofides\bin\Debug\netcoreapp2.0\Christofides.dll
+C:\Users\Trent\OneDrive - Seattle Pacific University\Code\Christofides\Christofides\bin\Debug\netcoreapp2.0\Christofides.pdb
+C:\Users\Trent\OneDrive - Seattle Pacific University\Code\Christofides\Christofides\obj\Debug\netcoreapp2.0\Christofides.csprojResolveAssemblyReference.cache
+C:\Users\Trent\OneDrive - Seattle Pacific University\Code\Christofides\Christofides\obj\Debug\netcoreapp2.0\Christofides.csproj.CoreCompileInputs.cache
+C:\Users\Trent\OneDrive - Seattle Pacific University\Code\Christofides\Christofides\obj\Debug\netcoreapp2.0\Christofides.AssemblyInfoInputs.cache
+C:\Users\Trent\OneDrive - Seattle Pacific University\Code\Christofides\Christofides\obj\Debug\netcoreapp2.0\Christofides.AssemblyInfo.cs
+C:\Users\Trent\OneDrive - Seattle Pacific University\Code\Christofides\Christofides\obj\Debug\netcoreapp2.0\Christofides.dll
+C:\Users\Trent\OneDrive - Seattle Pacific University\Code\Christofides\Christofides\obj\Debug\netcoreapp2.0\Christofides.pdb
