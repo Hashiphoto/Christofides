@@ -6,7 +6,8 @@ namespace Christofides
 {
     class Graph
     {
-        Dictionary<int, List<Edge>> graph = new Dictionary<int, List<Edge>>();
+        private Dictionary<int, List<Edge>> graph = new Dictionary<int, List<Edge>>();
+        private int size;
 
         public void AddUndirectedEdge(int v1, int v2, int weight)
         {
@@ -14,12 +15,13 @@ namespace Christofides
             AddDirectedEdge(v2, v1, weight);
         }
 
-        private void AddDirectedEdge(int source, int dest, int weight)
+        public void AddDirectedEdge(int source, int dest, int weight)
         {
             Edge newEdge = new Edge(dest, weight);
-            if (graph[source] == null)
+            if (!graph.ContainsKey(source) || graph[source] == null)
             {
                 graph[source] = new List<Edge> { newEdge };
+                size++;
                 return;
             }
             graph[source].Add(newEdge);
@@ -40,9 +42,36 @@ namespace Christofides
             }
             return -1;
         }
+
+        public int Size()
+        {
+            return size;
+        }
+
+        public void SortByWeight()
+        {
+            foreach (KeyValuePair<int, List<Edge>> entry in graph)
+            {
+                entry.Value.Sort();
+            }
+        }
+
+        public void Print()
+        {
+            foreach(KeyValuePair<int, List<Edge>> entry in graph)
+            {
+                Console.Write(entry.Key + ": ");
+                List<Edge> list = entry.Value;
+                for(int i = 0; i < list.Count; i++)
+                {
+                    Console.Write(list[i].destination + ", ");
+                }
+                Console.Write("\n");
+            }
+        }
     }
 
-    class Edge
+    class Edge : IComparable
     {
         public int destination;
         public int weight;
@@ -51,6 +80,23 @@ namespace Christofides
         {
             this.destination = destination;
             this.weight = weight;
+        }
+
+        public int CompareTo(object obj)
+        {
+            if(obj == null)
+            {
+                return 1;
+            }
+            Edge otherEdge = obj as Edge;
+            if (otherEdge != null)
+            {
+                return weight.CompareTo(otherEdge.weight);
+            }
+            else
+            {
+                throw new ArgumentException("Object is not an Edge");
+            }
         }
     }
 }
