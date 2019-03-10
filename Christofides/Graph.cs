@@ -7,37 +7,42 @@ namespace Christofides
     class Graph
     {
         private Dictionary<int, List<Edge>> graph = new Dictionary<int, List<Edge>>();
+        private List<Edge> edges = new List<Edge>();
+        private List<int> vertices = new List<int>();
         private int size;
 
         public void AddUndirectedEdge(int v1, int v2, int weight)
         {
-            AddDirectedEdge(v1, v2, weight);
+            edges.Add(AddDirectedEdge(v1, v2, weight));
             AddDirectedEdge(v2, v1, weight);
         }
 
-        public void AddDirectedEdge(int source, int dest, int weight)
+        public Edge AddDirectedEdge(int source, int dest, int weight)
         {
-            Edge newEdge = new Edge(dest, weight);
+            Edge newEdge = new Edge(source, dest, weight);
             if (!graph.ContainsKey(source) || graph[source] == null)
             {
+                vertices.Add(source);
                 graph[source] = new List<Edge> { newEdge };
                 size++;
-                return;
             }
-            graph[source].Add(newEdge);
+            else
+            {
+                graph[source].Add(newEdge);
+            }
+            return newEdge;
         }
 
         // Returns the weight of the edge between v1 and v2
-        // If there is no edge, it returns -1
         public int GetWeight(int v1, int v2)
         {
-            if (graph[v1] == null)
-                return -1;
-            for(int i = 0; i < graph[v1].Count; i++)
+            if (!graph.ContainsKey(v1))
+                throw new ArgumentException("Vertex " + v1 + " does not exist");
+            foreach(var edge in graph[v1])
             {
-                if(graph[v1][i].destination == v2)
+                if(edge.destination == v2)
                 {
-                    return graph[v1][i].weight;
+                    return edge.weight;
                 }
             }
             return -1;
@@ -50,10 +55,17 @@ namespace Christofides
 
         public void SortByWeight()
         {
-            foreach (KeyValuePair<int, List<Edge>> entry in graph)
-            {
-                entry.Value.Sort();
-            }
+            edges.Sort();
+        }
+
+        public List<Edge> GetEdges()
+        {
+            return edges;
+        }
+
+        public List<int> GetVertices()
+        {
+            return vertices;
         }
 
         public void Print()
@@ -64,7 +76,7 @@ namespace Christofides
                 List<Edge> list = entry.Value;
                 for(int i = 0; i < list.Count; i++)
                 {
-                    Console.Write(list[i].destination + ", ");
+                    Console.Write("(" + list[i].destination + ", " + list[i].weight + "), ");
                 }
                 Console.Write("\n");
             }
@@ -73,11 +85,13 @@ namespace Christofides
 
     class Edge : IComparable
     {
+        public int source;
         public int destination;
         public int weight;
 
-        public Edge(int destination, int weight)
+        public Edge(int source, int destination, int weight)
         {
+            this.source = source;
             this.destination = destination;
             this.weight = weight;
         }
